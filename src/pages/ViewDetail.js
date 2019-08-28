@@ -121,13 +121,14 @@ render(){
             <View style={{flex:1,flexDirection:'row'}} >
                 <View style={{flex:1}}>
                     <Text style={styles.price} >Rp. {price} / bulan </Text>
-                    <Text style={{color:'green',fontSize:15}} >lihat semua harga</Text>
+                    <Text style={{color:'green',fontSize:15}} >liha semua harga</Text>
                 </View>   
                 <View style={{flex:1,flexDirection:'row'}}>
                     <Button style={{flex:1,backgroundColor:'white',alignItems:'center',borderWidth:2,borderColor:'red'}}><Text style={{paddingRight:0}} >Hubungi Kost</Text></Button>
                     <Button style={{flex:1,backgroundColor:'orange',borderWidth:2,borderColor:'red'}}><Text style={{paddingLeft:20,color:'white'}} >Booking</Text></Button>
                 </View>
             </View> 
+    
             </View>
             
         </View>
