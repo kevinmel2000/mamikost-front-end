@@ -1,196 +1,191 @@
 import React, { Component } from 'react';
-import {View, Text, ScrollView,Image,StyleSheet} from 'react-native';
-import {SearchBar} from 'react-native-elements'
-import {Button,Container} from 'native-base'
+import { View, Text, ScrollView, Image,ImageBackground, StyleSheet, Button, TouchableOpacity } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
-export default class ViewDetail extends Component{
+export default class ViewDetail extends Component {
 
-    constructor(){
-        super();
-        this.dataKost = [
-            {
-                id:1,
-                gender:'Putri',
-                address:'Jakarta-barat',
-                description:'Kost mamirooms jakarta',
-                price:'1.750.000',
-                booking:'Bisa Booking',
-                image:'https://rumahdijual.com/attachments/bandung/25804631d1531824574-sewa-kosan-di-jatinangor-murah-lengkap-photo_2018-07-17_14-58-13.jpg',
-                update:'12 August 2019',
-                widthRoom:'5x3 m'
-                
-            },
-            {
-                id:2,
-                gender:'Putri',
-                address:'Kost mamirooms yogyakarta',
-                description:'Kost mamirooms yogyakrata',
-                price:'1.750.000',
-                booking:'Bisa Booking',
-                image:'https://pbs.twimg.com/media/Bpw8n3JCMAAZwim.jpg',
-                update:'12 August 2019',
-                widthRoom:'5x3 m'
+    render() {
+        const { navigation } = this.props;
+        const id = navigation.getParam('id');
+        const gender = navigation.getParam('gender');
+        const address = navigation.getParam('address');
+        const description = navigation.getParam('description');
+        const price = navigation.getParam('price');
+        const booking = navigation.getParam('booking');
+        const image = navigation.getParam('image');
+        // const data = navigation.getParam('data',null);
 
-            },
-            {
-                id:3,
-                gender:'Putri',
-                address:'Bandung',
-                description:'Kost mamirooms Bandung',
-                price:'1.750.000',
-                booking:'Bisa Booking',
-                image:'https://cdn.idntimes.com/content-images/post/20160504/small-bedroom-interior-design-ideas-meant-to-enlargen-your-space-small-bedroom-ideas-6-b535d04626a599c6c26049d1bbfb6654.jpg',
-                update:'12 August 2019',
-                widthRoom:'5x3 m'
-            },
-            {
-                id:4,
-                gender:'Putri',
-                address:'Surabaya',
-                description:'Kost mamirooms Surabaya',
-                price:'1.750.000',
-                booking:'Bisa Booking',
-                image:'https://blogpictures.99.co/D4-MPQUYAA1B7G.jpg',
-                update:'12 August 2019',
-                widthRoom:'5x3 m'
-            }
-        ]
-    }    
+        return (
 
-render(){
-    const { navigation } = this.props;
-    const id = navigation.getParam('id');
-    const gender = navigation.getParam('gender');
-    const address = navigation.getParam('address');
-    const description = navigation.getParam('description');
-    const price = navigation.getParam('price');
-    const booking = navigation.getParam('booking');
-    const image = navigation.getParam('image');
-    // const data = navigation.getParam('data',null);
+            <View style={styles.container} >
+                <ScrollView style={{ flex: 1 }}>
+                    <View style={styles.topHeader} >
+                        <View style={styles.image}>
+                            <ImageBackground style={{ height: '100%' }} source={{ uri: image }} >
+                                <Ionicons name='md-arrow-back' size={35} color='white' />    
+                            </ImageBackground>
+                        </View>
+                        <View style={styles.menu}>
+                            <TouchableOpacity style={styles.case}>
+                                <Ionicons name='ios-analytics' size={35} color='green' style={{paddingRight:10}} />
+                                <Text style={styles.whiteText}>Foto</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.case}>
+                                <Ionicons name='ios-pin' size={35} color='white' style={{paddingRight:10}}/>
+                                <Text style={styles.whiteText}>Peta</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.case}>
+                                <Ionicons name='ios-compass' size={35} color='white' style={{paddingRight:10}} />
+                                <Text style={styles.whiteText}>360</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
 
-    return(
-    
-    <ScrollView>
-    <View>    
-        
-        <View style={{flex:1}}>
-            <View>
-            <View>
-                <View style={{ borderWidth:1,borderColor:'white'}}>
-                    <Image 
-                    style={{height: 150}}
-                    source={{uri: image}}/>
-                </View>
-            </View>
-            
-            <View >
-                <View style={styles.menuCaseBlack}>
-                    <View style={styles.case}><Text style={styles.whiteText}>Foto</Text></View>
-                    <View style={styles.case}><Text style={styles.whiteText}>Peta</Text></View>
-                    <View style={styles.case}><Text style={styles.whiteText}>360</Text></View>
-                </View>
-            </View>
-            
-            <View style={styles.page}>
-                <View><Text style={styles.gender}>{gender}</Text></View>
-                <View><Text style={styles.description}>{description}</Text></View>
-                <View><Text style={styles.update} >Update </Text></View>
-            </View>
-            
-            <View style={[styles.page,{marginBottom:40}]}>   
-                <View style={styles.menuCaseWhite}>
-                    <View style={styles.case}><Text>Tidak termasuk listrik</Text></View>
-                    <View style={styles.case}><Text>Tidak ada min.bayar</Text></View>
-                </View>
-            </View>
-            
-            <View>
-                <View style={styles.endPage} >
-                    <Text style={[styles.textBold,{paddingBottom:10}]} >Luas kamar</Text>
-                    <Text>widthRoom</Text>
-                    <View style={{paddingTop:50,paddingBottom:20}} >
-                    <View  style={styles.menuCaseWhite}>
-                    <View style={[styles.case,{alignItems:'stretch'}]} ><Text style={{marginLeft:-10,fontWeight:'bold',fontSize:15}}>Fasilitas kost dan kamar</Text></View>
-                    <View style={[styles.case,{alignItems:'center'}]}><Text style={{fontWeight:'bold',color:'green'}}>Lihat Semua</Text></View>
-                     </View>  
+                    <View style={styles.content}>
+                        <View style={styles.topContent} >
+                            <View style={styles.page1}>
+                                <View><Text style={styles.gender}>{gender}</Text></View>
+                                <View><Text style={styles.description}>{description}</Text></View>
+                                <View><Text style={styles.update} >Update 28 Juli 2019</Text></View>
+                            </View>
+                            <View style={styles.page2}>
+                                <Ionicons name='ios-star' size={35} color='pink' />
+                            </View>
+                        </View>
+                        <View style={styles.centerContent} >
+
+                            <View style={styles.case}>
+                                <Ionicons name='ios-flash' size={20} color='black' />
+                                <Text>Tidak termasuk listrik</Text>
+                            </View>
+                            <View style={styles.case}>
+                                <Ionicons name='logo-usd' size={20} color='black' />
+                                <Text>Tidak ada min.bayar</Text>
+                            </View>
+
+                        </View>
+                        <View style={styles.bottomContent} >
+                            <View style={{ flex: 1 }} >
+                                <Text style={{ paddingLeft: 10, fontWeight: 'bold', fontSize: 15 }} >Luas kamar</Text>
+                                <Text style={{ paddingLeft: 10 }}> <Ionicons name='ios-qr-scanner' size={20} color='black' /> 5 X 4</Text>
+                            </View>
+                            <View style={{ flex: 1, flexDirection: 'row' }}>
+                                <View style={styles.case}>
+                                    <Text>Fasilitas kost dan kamar</Text>
+                                </View>
+                                <TouchableOpacity style={styles.case}>
+                                    <Text style={{ color: 'green' }}>Lihat semua</Text>
+                                </TouchableOpacity>
+                            </View>
+
+                        </View>
+                    </View>
+                </ScrollView>
+                <View style={{ borderWidth:1,borderColor:'#ddd',flexDirection:'row', flex: 0.1,alignItems:'center' }} >
+                    <View style={{ flex: 1 }}>
+                        <Text style={styles.price} >Rp. {price} / bulan </Text>
+                        <TouchableOpacity>
+                         <Text style={{ color: 'green', fontSize: 15 }} >Lihat semua harga</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{ flex: 1, flexDirection: 'row',alignItems:'center' }}>
+                        <TouchableOpacity style={styles.buttonWhite}>
+                            <Text style={{ alignSelf: 'center',color:'orange' }} >Hubungi Kost</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.buttonOrange}>
+                            <Text style={{ alignSelf: 'center', color: 'white' }} >Booking</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>
-
-            <View style={{flex:1,flexDirection:'row'}} >
-                <View style={{flex:1}}>
-                    <Text style={styles.price} >Rp. {price} / bulan </Text>
-                    <Text style={{color:'green',fontSize:15}} >liha semua harga</Text>
-                </View>   
-                <View style={{flex:1,flexDirection:'row'}}>
-                    <Button style={{flex:1,backgroundColor:'white',alignItems:'center',borderWidth:2,borderColor:'red'}}><Text style={{paddingRight:0}} >Hubungi Kost</Text></Button>
-                    <Button style={{flex:1,backgroundColor:'orange',borderWidth:2,borderColor:'red'}}><Text style={{paddingLeft:20,color:'white'}} >Booking</Text></Button>
-                </View>
-            </View> 
-    
-            </View>
-            
-        </View>
-     
-    </View>
-
-    
-    </ScrollView>
-      
-)}}
+        )
+    }
+}
 
 const styles = StyleSheet.create({
-price :{
-    fontSize : 18
-},
-gender :{
-    color:'pink'
-},
-textBold:{
-    fontSize:20,
-    fontWeight:'bold',
-    paddingTop:5
-},
-description:{
-    fontSize:25
-},
-button:{
-    width:90,
-    height:30,
-    marginTop:10
-},
-update:{
-    fontSize:10,
-    marginBottom:20
-},
-menuCaseBlack:{
-    backgroundColor:'black',
-    flex:1,
-    flexDirection:'row',
-},
-menuCaseWhite:{
-    backgroundColor:'white',
-    flex:1,
-    flexDirection:'row',
-},
-case:{
-    flex:1,
-    padding:10,
-    fontSize:20,
-    alignItems:'center'
-},
-whiteText:{
-    color:'white',
-    fontSize:15
-},
-page:{
-    paddingTop:20,
-    borderBottomColor:'#ccc',
-    borderWidth:0.3
-},
-endPage:{
-    borderBottomColor:'#ccc',
-    borderWidth:0.3,
-}
+    container: {
+        flex: 1
+    },
+    topHeader: {
+        flex: 1,
+    },
+    image: {
+        flex: 6,
+        height: 250
+    },
+    menu: {
+        flex: 1,
+        flexDirection: 'row',
+        backgroundColor: 'black',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    case: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    whiteText: {
+        color: 'white'
+    },
+    content: {
+        flex: 1,
+    },
+    topContent: {
+        flex: 3,
+        flexDirection: 'row',
+        height: 150
+    },
+    centerContent: {
+        flex: 1,
+        borderWidth: 1,
+        borderColor: '#ddd',
+        flexDirection: 'row',
+        height: 50
+    },
+    bottomContent: {
+        flex: 2,
+        backgroundColor: 'white',
+        height: 150
+    },
+    page1: {
+        flex: 4,
+        padding: 10
+    },
+    page2: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    gender: {
+        color: 'pink'
+    },
+    description: {
+        fontWeight: 'bold',
+        fontSize: 25
+    },
+    price: {
+        fontSize:15,
+        fontWeight:'bold'
+    },
+    buttonWhite:{
+        height:40,
+        width:90,
+        alignContent:'center',
+        justifyContent:'center',
+        borderWidth:1,
+        borderColor:'coral',
+        marginRight:2
+    },    
+    buttonOrange:{
+        height:40,
+        width:90,
+        alignContent:'center',
+        justifyContent:'center',
+        borderWidth:1,
+        borderColor:'coral',
+        backgroundColor:'coral'
+    }
 })

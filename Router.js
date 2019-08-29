@@ -137,6 +137,7 @@ const Main = createBottomTabNavigator({
 
 const PopularCities = createStackNavigator(
   {
+    Home:Main,
     PopularCity : PopularCity,
     ViewDetail:ViewDetail
   },
