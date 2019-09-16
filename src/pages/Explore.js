@@ -3,6 +3,7 @@ import {View,Text,ScrollView,StyleSheet,TouchableOpacity,Image,ImageBackground} 
 import Ic from 'react-native-vector-icons/FontAwesome'
 import style from './style'
 import Carousel from './Carousel'
+import Axios from 'axios'
 
 
 export default class Explore extends Component{
@@ -11,13 +12,24 @@ export default class Explore extends Component{
 
         this.state={
             nav:'Kost',
-            styleMenuAktif:style.backgroundMenuAktif,    
+            styleMenuAktif:style.backgroundMenuAktif,
+            users:[{
+                name:'refan'
+            }]   
         }
     }
+
+    // componentDidMount(){
+    //     Axios.get(`http://192.168.0.13:3000/api/v1/users`)
+    //     .then(res => {
+    //       const users = res.data;
+    //       console.log(users);
+    //       this.setState({ users });
+    //     })
+    // }
     render(){
         return(
             <View style={style.container} >
-       
                 <View style={style.header} >
 
                     <View style={style.containerIconMenu}>
