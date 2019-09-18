@@ -3,10 +3,11 @@ import {View,Text,ScrollView,StyleSheet,TouchableOpacity,Image,ImageBackground} 
 import Ic from 'react-native-vector-icons/FontAwesome'
 import style from './style'
 import Carousel from './Carousel'
-import Axios from 'axios'
+import {connect} from 'react-redux'
+import * as rentlist from '../_actions/rentlist'
 
 
-export default class Explore extends Component{
+class Explore extends Component{
     constructor(props){
         super(props);
 
@@ -15,10 +16,9 @@ export default class Explore extends Component{
             styleMenuAktif:style.backgroundMenuAktif,
             users:[{
                 name:'refan'
-            }]   
+            }],
         }
     }
-
     // componentDidMount(){
     //     Axios.get(`http://192.168.0.13:3000/api/v1/users`)
     //     .then(res => {
@@ -28,6 +28,7 @@ export default class Explore extends Component{
     //     })
     // }
     render(){
+        const town = 'jakarta'
         return(
             <View style={style.container} >
                 <View style={style.header} >
@@ -108,7 +109,9 @@ export default class Explore extends Component{
                 <View style={style.centerContent} >
                   <Text style={style.textContent} >Promo</Text>
                   <View style={style.promo} >
+                    {this.state.Carousel =true ? 
                     <Carousel/>
+                    :null}
                   </View>
                   <View style={style.containerMenuLogin} >
                       <View style={style.leftMenuLogin} >
@@ -126,7 +129,8 @@ export default class Explore extends Component{
                   <ScrollView horizontal={true}>
                   <View style={style.containerImagePopularcity} >
                       <TouchableOpacity onPress={()=>{
-                          this.props.navigation.navigate('PopularCity',{city:'Jakarta'})
+                        this.props.getRentlistTown('Jakarta'),
+                        this.props.navigation.navigate('PopularCity',{city:'Jakarta'})
                       }} >
                       <ImageBackground source={require('../../assets/img/jakarta.jpg')} imageStyle={{ borderRadius: 20 }} style={style.imagePopularCity} >
                           <Text style={{color:'white'}} >Jakarta</Text>
@@ -154,7 +158,8 @@ export default class Explore extends Component{
                       </ImageBackground>
                       </TouchableOpacity>
                       <TouchableOpacity onPress={()=>{
-                          this.props.navigation.navigate('PopularCity',{city:'Bandung'})
+                          this.props.navigation.navigate('PopularCity',{city:'Bandung'}),
+                          this.props.getRentlistTown('Bandung')
                       }} >
                       <ImageBackground source={require('../../assets/img/bandung.jpg')} imageStyle={{ borderRadius: 20 }} style={style.imagePopularCity} >
                           <Text style={{color:'white'}} >Bandung</Text>
@@ -171,6 +176,12 @@ export default class Explore extends Component{
     }
 }
 
+const mapDispatchtoProps = dispatch => {
+    return {
+        getRentlistTown: (town) => dispatch(rentlist.get_rentlist_town(town))
+    }
+}
+export default connect(null, mapDispatchtoProps)(Explore)
 
 
 //    const data = this.props.navigation.getParam('data')

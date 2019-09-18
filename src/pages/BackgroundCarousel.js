@@ -15,7 +15,7 @@ class BackgroundCarousel extends React.Component {
   }
 
   componentDidMount = () => {
-    setInterval(() => {
+    this.csl = setInterval(() => {
       this.setState(
         prev => ({
           selectedIndex:
@@ -33,6 +33,10 @@ class BackgroundCarousel extends React.Component {
       );
     }, 3000);
   };
+  
+  componentWillUnmount(){
+    clearInterval(this.csl)
+  }
 
   setSelectedIndex = event => {
     const contentOffset = event.nativeEvent.contentOffset;
@@ -82,6 +86,7 @@ class BackgroundCarousel extends React.Component {
 const styles = StyleSheet.create({
   backgroundImage: {
     height: "100%",
+    resizeMode: 'stretch',
     width: Dimensions.get("window").width
   },
   circleDiv: {

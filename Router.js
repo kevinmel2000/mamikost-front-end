@@ -2,34 +2,17 @@ import React, {Component} from 'react';
 import {createSwitchNavigator,createBottomTabNavigator, createStackNavigator,createAppContainer, createMaterialTopTabNavigator} from 'react-navigation';
 import Login1 from './src/login/Login';
 import ViewDetail from './src/pages/ViewDetail';
-// import Header from './src/header/header';
-import HeaderIklan from './src/header/headerIklan'
-import Iklan from './src/pages/Iklan'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import BeforeLogin from './src/pages/BeforeLogin'
 import BlankHistory from './src/pages/BlankHistory'
 import Chat from './src/pages/Chat'
 import PopularCity from './src/pages/PopularCity'
-
-import Tab1 from './src-latihan/components/TabScreens/Tab1'
-import Tab2 from './src-latihan/components/TabScreens/Tab2'
-import Tab3 from './src-latihan/components/TabScreens/Tab3'
-import Tab4 from './src-latihan/components/TabScreens/Tab4'
 import Explore from './src/pages/Explore'
-import { View } from 'native-base';
-
-// const _headerExplore = props =>{
-//   return(
-//     <View style={{flex:1}} >
-//       <HeaderExplore navigation={props.navigation}/>
-//     </View>
-//   )
-// }
-
+import _Wishlist from './src/pages/Wishlist'
 
 const MenuWishlist = createMaterialTopTabNavigator(
   {
-    Favorit: { screen: BeforeLogin },
+    Favorit: { screen: _Wishlist },
     Dilihat: { screen: BlankHistory },
   },
   {
