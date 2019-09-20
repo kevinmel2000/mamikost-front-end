@@ -8,6 +8,8 @@ import Spinner from './Spinner'
 class ViewDetail extends Component {
     
     render() {
+        const {navigation} = this.props
+        const back = navigation.getParam('back',0) 
         const rent = this.props.rent.data[0]
         console.log(rent)
         if (this.props.rent.isLoading == true) {
@@ -86,7 +88,7 @@ class ViewDetail extends Component {
                         </View>
                     </ScrollView>
                     
-                    <TouchableOpacity onPress={()=>{this.props.navigation.navigate('PopularCity')}}  style={{position:'absolute'}} >
+                    <TouchableOpacity onPress={()=>{this.props.navigation.navigate(back)}}  style={{position:'absolute'}} >
                         <Ionicons name='md-arrow-back' size={35} color='white' />
                     </TouchableOpacity>   
                     <View style={{ borderWidth: 1, borderColor: '#ddd', flexDirection: 'row', flex: 0.1, alignItems: 'center' }} >

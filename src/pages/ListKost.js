@@ -94,6 +94,8 @@ class ListKost extends Component {
         // this.props.getRentlist()
         //axios.get('http://localhost:5000/api/v1/categories').then(result=>console.log(result)).catch(r=>console.log(r))   
     }
+
+
     render() {
         const love = this.state.love
         console.log(love)
@@ -109,7 +111,7 @@ class ListKost extends Component {
 
                         <View style={{ flex: 1, marginTop: 10 }} key={index}>
                             <TouchableOpacity onPress={() => {
-                                this.props.navigation.navigate('ViewDetail')
+                                this.props.navigation.navigate('ViewDetail',{back:'PopularCity'})
                                 this.props.getRentListById(item.rentlists.id)
                             }}>
                                 <View style={{ borderWidth: 2, borderColor: 'white' }}>

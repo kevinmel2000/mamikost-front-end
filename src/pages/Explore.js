@@ -5,6 +5,7 @@ import style from './style'
 import Carousel from './Carousel'
 import {connect} from 'react-redux'
 import * as rentlist from '../_actions/rentlist'
+import AsyncStorage from '@react-native-community/async-storage'
 
 
 class Explore extends Component{
@@ -17,8 +18,11 @@ class Explore extends Component{
             users:[{
                 name:'refan'
             }],
+            obj:[]
         }
+        // this.handleOnNavigateBack = this.handleOnNavigateBack.bind(this)
     }
+    
     // componentDidMount(){
     //     Axios.get(`http://192.168.0.13:3000/api/v1/users`)
     //     .then(res => {
