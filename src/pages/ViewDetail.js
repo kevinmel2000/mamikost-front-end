@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Image, ImageBackground, StyleSheet, Button, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, Image, ImageBackground, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { connect } from 'react-redux'
 import Spinner from './Spinner'
+import ViewMapDetails from './ViewMapDetails'
 
 
 class ViewDetail extends Component {
+    constructor(props){
+        super(props);
+        this.state ={
+            menu:'foto'
+        }
+    }
     
     render() {
         const {navigation} = this.props
         const back = navigation.getParam('back',0) 
         const rent = this.props.rent.data[0]
+        const image = this.props.rent.data
         console.log(rent)
         if (this.props.rent.isLoading == true) {
             return (
@@ -20,24 +28,37 @@ class ViewDetail extends Component {
             return (
 
                 <View style={styles.container} >
+                {/* {image.map((e,i)=>{
+                   <View style={{flex:1}}>
+                        <ImageBackground style={{ height: '100%' }} source={{ uri: e.image }} />
+                   </View>
                    
+                })} */}
                     <ScrollView style={{ flex: 1 }}>
-
                         <View style={styles.topHeader} >
                             <View style={styles.image}>
-                                
-                                <ImageBackground style={{ height: '100%' }} source={{ uri: rent.image }} />
-
+                            {this.state.menu == 'foto' ? 
+                            <ScrollView style={{flex:1}} horizontal={true}>
+                                {image.map((e,index) =>(
+                                    <ImageBackground  resizeMode='stretch' style={{ alignSelf:'stretch', justifyContent:'center', height:250, width: Dimensions.get('window').width}} source={{ uri: e.image }} key={index} />
+                                   
+                                ))}
+                            </ScrollView>
+                            :
+                            <View style={{flex:1}} >
+                                <ViewMapDetails latitude={rent.rentlists.latitude} longitude={rent.rentlists.longtitude} style={{flex:1}} />
+                            </View>
+                            }
                             </View>
 
                             <View style={styles.menu}>
 
-                                <TouchableOpacity style={styles.case}>
-                                    <Ionicons name='ios-analytics' size={35} color='green' style={{ paddingRight: 10 }} />
+                                <TouchableOpacity style={styles.case} onPress={()=>{this.setState({menu:'foto'})}} >
+                                    <Ionicons name='ios-analytics' size={35}  color={this.state.menu == 'foto' ?'green':'white'} style={{ paddingRight: 10 }} />
                                     <Text style={styles.whiteText}>Foto</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity style={styles.case}>
-                                    <Ionicons name='ios-pin' size={35} color='white' style={{ paddingRight: 10 }} />
+                                <TouchableOpacity style={styles.case} onPress={()=>{this.setState({menu:'peta'})}}>
+                                    <Ionicons name='ios-pin' size={35} color={this.state.menu == 'peta' ?'green':'white'} style={{ paddingRight: 10 }} />
                                     <Text style={styles.whiteText}>Peta</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={styles.case}>
@@ -129,8 +150,10 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     image: {
-        flex: 6,
-        height: 250
+        flex: 1,
+        alignItems:'center',
+        height:250
+        
     },
     menu: {
         flex: 1,

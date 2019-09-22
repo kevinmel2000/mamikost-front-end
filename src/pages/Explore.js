@@ -134,35 +134,35 @@ class Explore extends Component{
                   <View style={style.containerImagePopularcity} >
                       <TouchableOpacity onPress={()=>{
                         this.props.getRentlistTown('Jakarta'),
-                        this.props.navigation.navigate('PopularCity',{city:'Jakarta'})
+                        this.props.navigation.navigate('PopularCity',{city:'Jakarta',latitude:-6.207417,longitude:106.842567})
                       }} >
                       <ImageBackground source={require('../../assets/img/jakarta.jpg')} imageStyle={{ borderRadius: 20 }} style={style.imagePopularCity} >
                           <Text style={{color:'white'}} >Jakarta</Text>
                       </ImageBackground>
                       </TouchableOpacity>
                       <TouchableOpacity onPress={()=>{
-                          this.props.navigation.navigate('PopularCity',{city:'Surabaya'})
+                          this.props.navigation.navigate('PopularCity',{city:'Surabaya',latitude:-7.2754438,longitude:112.6426425})
                       }} >
                       <ImageBackground source={require('../../assets/img/surabaya.jpg')} imageStyle={{ borderRadius: 20 }} style={style.imagePopularCity} >
                           <Text style={{color:'white'}} >Surabaya</Text>
                       </ImageBackground>
                       </TouchableOpacity>
                       <TouchableOpacity onPress={()=>{
-                          this.props.navigation.navigate('PopularCity',{city:'Palembang'})
+                          this.props.navigation.navigate('PopularCity',{city:'Palembang',latitude:-2.9547949,longitude:104.6929233})
                       }} >
                       <ImageBackground source={require('../../assets/img/palembang.jpg')} imageStyle={{ borderRadius: 20 }} style={style.imagePopularCity} >
                           <Text style={{color:'white'}} >Palembang</Text>
                       </ImageBackground>
                       </TouchableOpacity>
                       <TouchableOpacity onPress={()=>{
-                          this.props.navigation.navigate('PopularCity',{city:'Yogyakarta'})
+                          this.props.navigation.navigate('PopularCity',{city:'Yogyakarta',latitude:-7.803164,longitude:110.3398252})
                       }} >
                       <ImageBackground source={require('../../assets/img/yogyakarta.jpg')} imageStyle={{ borderRadius: 20 }} style={style.imagePopularCity} >
                           <Text style={{color:'white'}} >Yogyakarta</Text>
                       </ImageBackground>
                       </TouchableOpacity>
                       <TouchableOpacity onPress={()=>{
-                          this.props.navigation.navigate('PopularCity',{city:'Bandung'}),
+                          this.props.navigation.navigate('PopularCity',{city:'Bandung',latitude:-6.9032739,longitude:107.5731163}),
                           this.props.getRentlistTown('Bandung')
                       }} >
                       <ImageBackground source={require('../../assets/img/bandung.jpg')} imageStyle={{ borderRadius: 20 }} style={style.imagePopularCity} >

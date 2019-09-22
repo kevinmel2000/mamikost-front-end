@@ -190,6 +190,7 @@ android {
 dependencies {
     implementation project(':react-native-vector-icons')
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "com.android.support:appcompat-v7:25.0.1"
     implementation "com.facebook.react:react-native:+"  // From node_modules
 
     if (enableHermes) {

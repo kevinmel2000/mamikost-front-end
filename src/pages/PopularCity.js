@@ -7,10 +7,12 @@ import {
    TouchableOpacity
 } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {connect} from 'react-redux'
 
 import ListKost from './ListKost'
+import ViewMaps from './ViewMaps'
 
-export default class PopularCity extends Component {
+class PopularCity extends Component {
    constructor(props){
        super(props);
        this.state={
@@ -19,7 +21,9 @@ export default class PopularCity extends Component {
        }
    }
    render() {
-     const city = this.props.navigation.getParam('city')
+    const propsLatitude = this.props.navigation.getParam('latitude','tidak ada')
+    const propsLongitude = this.props.navigation.getParam('longitude', 0)
+    const city = this.props.navigation.getParam('city')
       return (
          <View style={stylePopularCity.container}>
              <View style={stylePopularCity.containerSearch}>
@@ -56,12 +60,19 @@ export default class PopularCity extends Component {
             <View style={stylePopularCity.content} >
                  {this.state.menu=='daftar'?
                     <ListKost key="lihatDaftar" navigate={this.props.navigation.navigate} />
-                 :null}
+                 :<ViewMaps key="ViewMaps" dataMarker={this.props.rentlist.data} city={city} latitude={propsLatitude} longitude={propsLongitude} navigate={this.props.navigation.navigate} />}
             </View>
          </View>
       )
    }
 }
+
+const mapStateToProps = state => {
+    return {
+        rentlist: state.rentlist
+    }
+}
+export default connect(mapStateToProps)(PopularCity)
 
 const stylePopularCity = StyleSheet.create({
     container:{

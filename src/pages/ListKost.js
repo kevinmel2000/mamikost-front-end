@@ -12,7 +12,7 @@ class ListKost extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            love: []
+            love: [],
         }
     }
 
@@ -36,24 +36,24 @@ class ListKost extends Component {
 
     minLove = (rentId) => {
         love = this.state.love
-            for (var i = 0; i < love.length; i++) {
-                if (love[i] == rentId) {
-                    love.splice(i,1)
-                    this.setState({ love })
+        for (var i = 0; i < love.length; i++) {
+            if (love[i] == rentId) {
+                love.splice(i, 1)
+                this.setState({ love })
 
-                }
-            } 
-       AsyncStorage.setItem('love', JSON.stringify(love));
+            }
+        }
+        AsyncStorage.setItem('love', JSON.stringify(love));
     }
 
     checkAsyn = () => {
         AsyncStorage.getItem('love', (error, result) => {
             if (result) {
-                      // We have data!!
-                      console.log(JSON.parse(result));
-                      this.setState({love:JSON.parse(result)})
+                // We have data!!
+                console.log(JSON.parse(result));
+                this.setState({ love: JSON.parse(result) })
                 // console.log(result)
-            }else{
+            } else {
                 null
             }
         })
@@ -67,7 +67,7 @@ class ListKost extends Component {
                 if (love[i] == rentId) {
                     return (
                         <TouchableOpacity style={styles.containerHeart} onPress={() => { this.minLove(rentId) }}>
-                            <Icon size={30} style={{color:'red'}} name='heart' />
+                            <Icon size={30} style={{ color: 'red' }} name='heart' />
                         </TouchableOpacity>
                     )
                 } else if (i == love.length - 1) {
@@ -88,15 +88,16 @@ class ListKost extends Component {
     }
 
     componentDidMount() {
-        
+
         //AsyncStorage.removeItem('love')
-         this.checkAsyn()
+        this.checkAsyn()
         // this.props.getRentlist()
         //axios.get('http://localhost:5000/api/v1/categories').then(result=>console.log(result)).catch(r=>console.log(r))   
     }
 
 
     render() {
+        let rent_id = ' '
         const love = this.state.love
         console.log(love)
         const rentlist = this.props.rentlist.data
@@ -108,10 +109,9 @@ class ListKost extends Component {
             return (
                 <ScrollView>
                     {rentlist.map((item, index) => (
-
                         <View style={{ flex: 1, marginTop: 10 }} key={index}>
                             <TouchableOpacity onPress={() => {
-                                this.props.navigation.navigate('ViewDetail',{back:'PopularCity'})
+                                this.props.navigation.navigate('ViewDetail', { back: 'PopularCity' })
                                 this.props.getRentListById(item.rentlists.id)
                             }}>
                                 <View style={{ borderWidth: 2, borderColor: 'white' }}>
@@ -119,9 +119,6 @@ class ListKost extends Component {
                                         style={{ height: 150 }}
                                         source={{ uri: item.image }} >
                                         {this.cekLove(item.rentlists.id)}
-                                        {/* <TouchableOpacity style={styles.containerHeart} onPress={() => { this.minLove(item.rentlists.id) }}>
-                                                    <Icon size={30} style={styles.heart} name='heart' />
-                                                </TouchableOpacity> */}
                                     </ImageBackground>
                                 </View>
                                 <View><Text style={styles.gender}>{item.rentlists.rentname}</Text></View>
@@ -131,7 +128,6 @@ class ListKost extends Component {
                             </TouchableOpacity>
                         </View>
                     ))}
-
                 </ScrollView>
             )
         }
